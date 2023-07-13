@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavBar } from "./NavBar";
 import { Select, FormControl, InputLabel, Input, MenuItem } from "@mui/material";
 import './styles/NewMember.css'
@@ -7,6 +7,20 @@ import './styles/NewMember.css'
 
 export const NewMember = () => {
 
+  const [formData, setFormData] = useState({})
+
+  const handleFormData = (event) => {
+    let newData = { ...formData };
+    newData[event.target.id] = event.target.value;
+    setFormData(newData);
+  };
+
+  {
+    console.log("I am Form Data " + formData.barcode
+    )
+  }
+
+
   return (
     <>
       <NavBar />
@@ -14,7 +28,7 @@ export const NewMember = () => {
         <div className="row1">
           <FormControl id="barcodeBox">
             <InputLabel>Barcode</InputLabel>
-            <Input id="barcode" aria-describedby="barcode #"></Input>
+            <Input id="barcode" onChange={(e) => handleFormData(e)} value={formData.barcode} required />
           </FormControl>
           <FormControl id="fnameBox">
             <InputLabel>First Name</InputLabel>
