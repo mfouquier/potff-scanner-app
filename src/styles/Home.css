@@ -1,0 +1,19 @@
+.search {
+  display: flex;
+  justify-content: center;
+  padding-top: 5em;
+}
+
+.searchbox {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 50rem;
+}
+
+.home-buttons {
+  display: flex;
+  padding: 5em 18em 5em 18em;
+
+  justify-content:space-evenly;
+}
