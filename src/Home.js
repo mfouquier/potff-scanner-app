@@ -3,6 +3,7 @@ import { NavBar } from "./NavBar";
 import './styles/Home.css'
 import { Button, OutlinedInput } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
+import { Link } from "react-router-dom";
 
 
 export const Home = () => {
@@ -16,9 +17,16 @@ export const Home = () => {
       </div>
 
       <div className="home-buttons">
-        <Button variant="contained">Add New Member</Button>
-        <Button variant="contained">Reports</Button>
-        <Button variant="contained">Members</Button>
+        <Link to={`/newMember`}>
+          <Button variant="contained" >Add New Member</Button>
+        </Link>
+        <Link to={`reports`}>
+          <Button variant="contained">Reports</Button>
+        </Link>
+        <Link to={`members`}>
+          <Button variant="contained">Members</Button>
+        </Link>
+
       </div>
 
     </>
