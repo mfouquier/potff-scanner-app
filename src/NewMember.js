@@ -1,25 +1,34 @@
 import React, { useState } from "react";
 import { NavBar } from "./NavBar";
-import { Select, FormControl, InputLabel, Input, MenuItem } from "@mui/material";
+import { Select, FormControl, InputLabel, Input, MenuItem, Button } from "@mui/material";
 import './styles/NewMember.css'
 
 
 
 export const NewMember = () => {
 
-  const [formData, setFormData] = useState({})
+  const [formData, setFormData] = useState({
+    barcode: '',
+    fname: '',
+    lname: '',
+    dodid: '',
+    directorate: '',
+    org: ''
+  })
 
   const handleFormData = (event) => {
+    console.log(event)
     let newData = { ...formData };
-    newData[event.target.id] = event.target.value;
+    newData[event.target.name] = event.target.value;
     setFormData(newData);
   };
 
-  {
-    console.log("I am Form Data " + formData.barcode
-    )
+  const handleSubmit = (event) => {
+    let newData = { ...formData };
+    newData[event.target.id] = event.target.value;
+    setFormData(newData);
+    console.log(formData)
   }
-
 
   return (
     <>
@@ -28,32 +37,38 @@ export const NewMember = () => {
         <div className="row1">
           <FormControl id="barcodeBox">
             <InputLabel>Barcode</InputLabel>
-            <Input id="barcode" onChange={(e) => handleFormData(e)} value={formData.barcode} required />
+            <Input name='barcode' id="barcode" onChange={(e) => handleFormData(e)} value={formData.barcode} required />
           </FormControl>
           <FormControl id="fnameBox">
             <InputLabel>First Name</InputLabel>
-            <Input id="fname" aria-describedby="fname"></Input>
+            <Input name='fname' id="fname" onChange={(e) => handleFormData(e)} value={formData.fname} required></Input>
           </FormControl>
           <FormControl id="lnameBox">
             <InputLabel>Last Name</InputLabel>
-            <Input id="lname" aria-describedby="lname"></Input>
+            <Input name='lname' id="lname" onChange={(e) => handleFormData(e)} value={formData.lname} required></Input>
           </FormControl>
         </div>
         <div className="row2">
           <FormControl id="dodidBox">
             <InputLabel>DoD ID</InputLabel>
-            <Input id="dodid" aria-describedby="dodid"></Input>
+            <Input name='dodid' id="dodid" onChange={(e) => handleFormData(e)} value={formData.dodid} required></Input>
           </FormControl>
           <FormControl id="directorateBox">
             <InputLabel>Directorate</InputLabel>
-            <Input id="directorate" aria-describedby="directorate"></Input>
+            <Input name='directorate' id="directorate" onChange={(e) => handleFormData(e)} value={formData.directorate}></Input>
           </FormControl>
           <FormControl id="orgBox">
             <InputLabel>Organization</InputLabel>
-            <Select name='org' id="org">
-              <MenuItem key="soccent">SOCCENT</MenuItem>
-              <MenuItem key="socom">SOCOM</MenuItem>
+            <Select name='org' id='org' onChange={(e) => handleFormData(e)} value={formData.org}>
+              <MenuItem id='org' value="soccent">SOCCENT</MenuItem>
+              <MenuItem id='org' value="socom">SOCOM</MenuItem>
             </Select>
+          </FormControl>
+        </div>
+
+        <div>
+          <FormControl sx={{ margin: '1em 0 1em 0' }}>
+            <Button variant="contained" onClick={(e) => handleSubmit(e)}>Submit</Button>
           </FormControl>
         </div>
 
